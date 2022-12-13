@@ -1,18 +1,18 @@
-var name; 
-var connectedUser;
+let name; 
+let connectedUser;
   
 //connecting to our signaling server
-var conn = new WebSocket('ws://192.168.109.147:9090');
-  
+let conn = new WebSocket('wss://192.168.109.147:9090');
+
 conn.onopen = function () { 
    console.log("Connected to the signaling server"); 
 };
   
 //when we got a message from a signaling server 
 conn.onmessage = function (msg) { 
-   console.log("Got message", msg.data);
+   // console.log("Got message", msg.data);
 	
-   var data = JSON.parse(msg.data); 
+   let data = JSON.parse(msg.data); 
 	
    switch(data.type) { 
       case "login": 
@@ -55,27 +55,24 @@ function send(message) {
 //UI selectors block 
 //******
  
-var loginPage = document.querySelector('#loginPage'); 
-var usernameInput = document.querySelector('#usernameInput'); 
-var loginBtn = document.querySelector('#loginBtn'); 
+let loginPage = document.querySelector('#loginPage'); 
+let usernameInput = document.querySelector('#usernameInput'); 
+let loginBtn = document.querySelector('#loginBtn'); 
 
-var callPage = document.querySelector('#callPage'); 
-var callToUsernameInput = document.querySelector('#callToUsernameInput');
-var callBtn = document.querySelector('#callBtn'); 
+let callPage = document.querySelector('#callPage'); 
+let callToUsernameInput = document.querySelector('#callToUsernameInput');
+let callBtn = document.querySelector('#callBtn'); 
 
-var hangUpBtn = document.querySelector('#hangUpBtn');
+let hangUpBtn = document.querySelector('#hangUpBtn');
   
-var localVideo = document.querySelector('#localVideo'); 
-var remoteVideo = document.querySelector('#remoteVideo'); 
+let localVideo = document.querySelector('#localVideo'); 
+let remoteVideo = document.querySelector('#remoteVideo'); 
 
-localVideo.addEventListener('loadedmetadata', function() {
-    console.log(`Local video videoWidth: ${this.videoWidth}px,  videoHeight: ${this.videoHeight}px`);
-});
 
-var username = document.querySelector('#username');
+let username = document.querySelector('#username');
   
-var yourConn; 
-var stream;
+let yourConn; 
+let stream;
   
 callPage.style.display = "none";
 
@@ -115,7 +112,7 @@ function handleLogin(success) {
          localVideo.srcObject = stream;
 
         //using Google public stun server 
-         var configuration = { 
+         let configuration = { 
             "iceServers": [{ "url": "stun:stun2.1.google.com:19302" }]
          }; 
 			
@@ -149,7 +146,7 @@ function handleLogin(success) {
   
 //initiating a call 
 callBtn.addEventListener("click", function () { 
-   var callToUsername = callToUsernameInput.value;
+   let callToUsername = callToUsernameInput.value;
 	
    if (callToUsername.length > 0) { 
 	
