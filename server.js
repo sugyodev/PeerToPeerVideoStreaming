@@ -18,7 +18,7 @@ let wss = new WebSocketServer({
 //    port: 9090
 //  });
 
-console.log("server is running on 192.168.109.147:80");
+// console.log("server is running on 192.168.109.147:80");
 //all connected to the server users 
 let users = {};
 
